@@ -1,0 +1,6 @@
+trong src: folder containers chưa code của component
+folder component chứa cái file sẽ dùng lại nhiều
+Video 31: Tạo form login
+constant.js chứa khai báo đường dẫn
+vào đường dẫn /login -> file App.js -> chạy đến file login.js trong Auth lấy dữ liệu
+JSX: code trực tiếp html vào trong file js
