@@ -4,3 +4,7 @@ Video 31: Tạo form login
 constant.js chứa khai báo đường dẫn
 vào đường dẫn /login -> file App.js -> chạy đến file login.js trong Auth lấy dữ liệu
 JSX: code trực tiếp html vào trong file js
+
+
+// Phần login (tương tác với route /api/login bên server)
+B1: tạo file userService.js
