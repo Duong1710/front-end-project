@@ -5,6 +5,20 @@ constant.js chứa khai báo đường dẫn
 vào đường dẫn /login -> file App.js -> chạy đến file login.js trong Auth lấy dữ liệu
 JSX: code trực tiếp html vào trong file js
 
+* Giải thích về cách kết nối giữa BE và FE (bổ sung cho bản luuw 15/3)
+axios là một thư viện JavaScript (chạy được trên cả trình duyệt và Node.js) dùng để gửi HTTP requests như GET, POST, PUT, DELETE,... đến server.
+axios giúp bạn giao tiếp với API – gửi và nhận dữ liệu giữa frontend và backend.
+CORS (Cross-Origin Resource Sharing) là một cơ chế bảo mật trên trình duyệt web, cho phép (hoặc chặn) trang web ở một domain này truy cập tài nguyên từ một domain khác.
+📌 Ví dụ:
+Bạn có một frontend React chạy ở http://localhost:3000
+Bạn có một API backend ở http://localhost:5000
 
-// Phần login (tương tác với route /api/login bên server)
-B1: tạo file userService.js
+👉 Khi React gọi API như:
+axios.get('http://localhost:5000/api/data')
+⛔ Trình duyệt sẽ chặn nếu backend không cho phép CORS. => Vì vậy phải cho phép cors từ phía server.
+* File chịu trách nhiệm liên kết BE và FE chính là file services ở FE và route/web.js ở BE - 2 nơi chứa đường dẫn api
+
+27/3: Hiển thị người dùng ra view
+File routes/ System.js: chưa đường dẫn dẫn ra component containers/System/UserMange.js -> Hiển thị ra màn hình người dùng
+UserMange.js: là file để vẽ giao diện
+Gọi API trong userService.js => viết hàm lấy toàn bộ người dùng, sử dụng hàm trong file UserMange.js
