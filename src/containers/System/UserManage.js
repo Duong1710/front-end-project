@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss'
 import { getAllUsers } from '../../services/userService';
+import ModalUser from './ModalUser'
 class UserManage extends Component {
     /** Luồng chạy của basic nhất của react
         * 1.Run construct => init state: khởi tạo biến
@@ -10,11 +11,12 @@ class UserManage extends Component {
         * 3.Render ra giao diện
         * 
         */
-    constructor(props) {
+    constructor(props) { // props là thuộc tính
         super(props);
         // state là biến mà ta sẽ dùng trong component này
         this.state = {
-            arrUsers: []
+            arrUsers: [],
+            isOpenModalUser: false,
         }
     }
 
@@ -27,14 +29,37 @@ class UserManage extends Component {
         }
         // console.log('get user from node js: ', response)
     }
+    // Các hàm xử lí sự kiện
+    handleAddNewUser = () => {
+        this.setState({
+            isOpenModalUser: true,
+        })
+    }
 
+    toggleUserModal = () => {
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser,
+        })
+    }
     render() {
         // Đã có bootstrap, fontawesome nên dùng các class của bootstrap luôn
         // Dùng table của react cho đẹp
         let arrUsers = this.state.arrUsers;
         return (
             <div className="users-container">
+                <ModalUser
+                    // import thuộc tính tới file ModalUser.js
+                    isOpen={this.state.isOpenModalUser} // import thuộc tính isOpen cho ModalUser.js
+                    toggleFromParent={this.toggleUserModal}
+                    test={'abc'}
+                />
                 <div className='title text-center'>Manage users with Dương</div>
+                <div className='mx-1'>
+                    <button
+                        className='btn btn-primary px-2'
+                        onClick={() => this.handleAddNewUser()} // mở ra modaluser khi click
+                    ><i class="fas fa-plus"></i>  Add new Users</button>
+                </div>
                 <div className='users-table mt-3 mx-1'>
                     <table id="customers">
                         <tr>
@@ -45,7 +70,6 @@ class UserManage extends Component {
                             <th>Actions</th>
                         </tr>
                         {arrUsers && arrUsers.map((item, index) => { // truyền giá trị của biến (từng user) vào bảng
-                            console.log("Eric check", item, index)
                             return (
                                 <tr key={index}>
                                     <td>{item.email}</td>

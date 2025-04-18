@@ -23,4 +23,4 @@ File routes/ System.js: chưa đường dẫn dẫn ra component containers/Syst
 UserMange.js: là file để vẽ giao diện
 Gọi API trong userService.js => viết hàm lấy toàn bộ người dùng, sử dụng hàm trong file UserMange.js
 
-Ngày 1/4: file FE không đổi, viết ra để push lên git thôi
+Ngày 1/4: file FE không đổi, viết ra để push lên git thôig
