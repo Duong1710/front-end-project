@@ -18,7 +18,6 @@
 export const adminMenu = [
     {
         name: 'menu.system.header',
-        icon: 'fas fa-cogs',
         menus: [
             {
                 name: 'menu.system.system-administrator.header',
