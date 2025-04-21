@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap' // import để render Modal bên dưới
-
+import { emitter } from '../../utils/emitter';
 class ModalUser extends Component {
 
     constructor(props) { // props là thuộc tính, là kế thừa những thuộc tính mà cha truyền vào
@@ -16,9 +16,23 @@ class ModalUser extends Component {
             lastName: '',
             address: ''
         }
-    }
 
+        this.listenToEmitter();
+    }
+    listenToEmitter() { // hàm xử lí: clean hết dữ liệu ở modal cho lần mở tiếp
+        emitter.on('EVENT_CLEAR_MODAL_DATA', () => { // lắng nghe sự kiện
+            // reset state
+            this.setState({
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                address: ''
+            })
+        })
+    }
     componentDidMount() {
+
     }
 
     toggle = () => {
@@ -34,7 +48,7 @@ class ModalUser extends Component {
         this.setState({ ...copyState })
     }
 
-    checkValidInput = () => {
+    checkValidateInput = () => {
         let isValid = true;
         let arrInput = ['email', 'password', 'firstName', 'lastName', 'address'];
         for (let i = 0; i < arrInput.length; i++) {
@@ -53,7 +67,7 @@ class ModalUser extends Component {
         return isValid;
     }
     handleAddNewUser = () => {
-        let isValid = this.checkValidInput();
+        let isValid = this.checkValidateInput();
         if (isValid === true) {
             //call api create modal
             // console.log(this.props) -> props là toàn bộ các câu lệnh của thằng cha UserManage truyền sang cho ModalUser này
@@ -130,7 +144,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);
-
-
 
 

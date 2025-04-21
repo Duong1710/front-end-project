@@ -1,23 +1,117 @@
-@import "../../styles/common.scss";
+// @import "../../styles/common.scss";
 
+// .header-container {
+//     z-index: 99;
+//     display: flex;
+//     justify-content: space-between;
+//     background-color: $colormain;
+//     color: $common-text-color;
+//     height: 40px;
+//     position: relative;
+//     .btn-logout {
+//         color: $common-text-color;
+//         line-height: 40px;
+//         height: 40px;
+//         padding: 0 10px;
+//         &:hover {
+//             background-color: darken($colormain, 5);
+//         }
+//         i {
+//             font-size: $base-size + 1px;
+//         }
+//     }
+// }
+
+/* Header.scss */
+/* Nâng cấp giao diện header: gradient, shadow, responsive, hover effect cho button */
 .header-container {
-    z-index: 99;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    background-color: $colormain;
-    color: $common-text-color;
-    height: 40px;
+    padding: 0 1.5rem;
+    height: 4rem;
+    background: linear-gradient(90deg, #515f75, #5693ba);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    color: #fff;
     position: relative;
-    .btn-logout {
-        color: $common-text-color;
-        line-height: 40px;
-        height: 40px;
-        padding: 0 10px;
-        &:hover {
-            background-color: darken($colormain, 5);
-        }
+    z-index: 10;
+}
+
+/* menu tabs */
+.header-tabs-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    /* override navigator links nếu nó dùng .nav-link */
+    .nav-link {
+        color: #fff;
+        padding: 0 1rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        position: relative;
+        transition: color 0.3s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: #fde047;
+    }
+
+    .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -0.25rem;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #fde047;
+    }
+}
+
+/* nút logout */
+.btn.btn-logout {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+
+    i {
+        color: #fff;
+        font-size: 1.2rem;
+    }
+
+    &:hover {
+        background: #fff;
+        transform: scale(1.1);
+
         i {
-            font-size: $base-size + 1px;
+            color: #1e40af;
         }
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+/* responsive: stack header trên mobile */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        height: auto;
+        padding: 0.75rem;
+    }
+
+    .btn.btn-logout {
+        margin-top: 0.5rem;
+        align-self: flex-end;
     }
 }

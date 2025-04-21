@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss'
-import { getAllUsers, createNewUserService } from '../../services/userService';
-import ModalUser from './ModalUser'
+import { getAllUsers, createNewUserService, deleteUserService } from '../../services/userService';
+import ModalUser from './ModalUser';
+import { emitter } from '../../utils/emitter';
 class UserManage extends Component {
     /** Luồng chạy của basic nhất của react
         * 1.Run construct => init state: khởi tạo biến
@@ -54,12 +55,27 @@ class UserManage extends Component {
             else {
                 await this.getAllUsersFromReact();
                 this.toggleUserModal(); // tắt modal
+                emitter.emit('EVENT_CLEAR_MODAL_DATA'); //khởi tạo sự kiện: xóa hết dữ liệu ở modal để clean cho lần mở tiếp
             }
+
         } catch (error) {
             console.log(error);
         }
     }
 
+    handleDeleteUser = async (user) => {
+        try {
+            let res = await deleteUserService(user.id);
+            if (res && res.errCode === 0) {
+                await this.getAllUsersFromReact();
+            }
+            else {
+                alert(res.errMessage);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     render() {
         // Đã có bootstrap, fontawesome nên dùng các class của bootstrap luôn
         // Dùng table của react cho đẹp
@@ -100,7 +116,7 @@ class UserManage extends Component {
                                         <td>{item.address}</td>
                                         <td>
                                             <button className='btn-edit'><i className="fas fa-pencil-alt"></i></button>
-                                            <button className='btn-delete'><i className="fas fa-trash"></i></button>
+                                            <button className='btn-delete' onClick={() => this.handleDeleteUser(item)}><i className="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 )
