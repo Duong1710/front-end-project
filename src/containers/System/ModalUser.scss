@@ -1,0 +1,65 @@
+.input-container {
+    margin-bottom: 6px;
+}
+
+.input-container input,
+.input-container select {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-top: 2px;
+    margin-bottom: 4px;
+    background: #f9f9f9;
+    transition: border 0.2s;
+}
+
+.input-container label {
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: block;
+}
+
+
+
+.input-container.half-width-input {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.address-input textarea {
+    width: 100%;
+    min-height: 20px;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    background: #f9f9f9;
+    transition: border 0.2s;
+    resize: vertical;
+    /* Nếu muốn dài hơn mặc định, có thể tăng min-height */
+}
+
+// @media (max-width: 900px) {
+//     .row {
+//         flex-direction: column;
+//         gap: 0;
+//     }
+
+//     .input-container.half-width-input {
+//         width: 100%;
+//     }
+// }
+.modal-user-container .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1.5rem !important; // hoặc giảm giá trị này nếu muốn sát hơn
+    padding-left: 1.5rem !important;
+}

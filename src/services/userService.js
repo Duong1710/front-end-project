@@ -6,8 +6,9 @@ const handleLoginApi = (userEmail, userPassword) => {
 }
 
 // gọi sang đường link bên BE
-const getAllUsers = (inputId) => {
-    return axios.get(`/api/get-all-users?id=${inputId}`);
+const getAllUsers = () => {
+    // return axios.get(`/api/get-all-users?id=${inputId}`);
+    return axios.get('/api/get-all-users');
 };
 
 const createNewUserService = (data) => {

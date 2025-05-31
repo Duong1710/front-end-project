@@ -1,0 +1,28 @@
+.admin-dashboard {
+    padding: 20px;
+}
+
+.admin-dashboard .card {
+    transition: transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard .card:hover {
+    transform: translateY(-5px);
+}
+
+.admin-dashboard .card-title {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.admin-dashboard .card-text {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.admin-dashboard .btn {
+    padding: 8px 20px;
+    font-weight: 500;
+}

@@ -67,7 +67,7 @@ class UserManage extends Component {
                 this.toggleUserModal(); // tắt modal
                 emitter.emit('EVENT_CLEAR_MODAL_DATA'); //khởi tạo sự kiện: xóa hết dữ liệu ở modal để clean cho lần mở tiếp
             }
-
+            return response;
         } catch (error) {
             console.log(error);
         }
@@ -124,6 +124,7 @@ class UserManage extends Component {
                     isOpen={this.state.isOpenModalUser} // import thuộc tính isOpen cho ModalUser.js
                     toggleFromParent={this.toggleUserModal}
                     createNewuser={this.createNewuser} // xử lí tạo mới người dùng
+                    arrUsers={this.state.arrUsers} // truyền danh sách users để check email trùng
                 />
                 {this.state.isOpenModalEditUser &&
                     <ModalEditUser
@@ -147,26 +148,24 @@ class UserManage extends Component {
                         <tbody>
                             <tr>
                                 <th>Email</th>
-                                <th>First name</th>
-                                <th>Last name</th>
+                                <th>Full name</th>
                                 <th>Address</th>
-                                <th>Actions</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Balance</th>
                             </tr>
-                            {arrUsers && arrUsers.map((item, index) => { // truyền giá trị của biến (từng user) vào bảng
+                            {arrUsers && arrUsers.map((item, index) => {
                                 return (
                                     <tr key={index}>
                                         <td>{item.email}</td>
-                                        <td>{item.firstName}</td>
-                                        <td>{item.lastName}</td>
+                                        <td>{item.fullName}</td>
                                         <td>{item.address}</td>
-                                        <td>
-                                            <button className='btn-edit' onClick={() => this.handleEditUser(item)}><i className="fas fa-pencil-alt"></i></button>
-                                            <button className='btn-delete' onClick={() => this.handleDeleteUser(item)}><i className="fas fa-trash"></i></button>
-                                        </td>
+                                        <td>{item.role}</td>
+                                        <td>{item.status}</td>
+                                        <td>{item.wallet ? item.wallet.balance : 0}</td>
                                     </tr>
                                 )
-                            })
-                            }
+                            })}
                         </tbody>
                     </table>
                 </div>
